@@ -118,13 +118,36 @@
       border-radius: 10px;
       margin-top: 1rem;
     }
+
+    .slider {
+      display: flex;
+      overflow-x: auto;
+      gap: 1rem;
+      padding: 1rem 0;
+      scroll-snap-type: x mandatory;
+    }
+
+    .slider img {
+      width: 300px;
+      height: 200px;
+      object-fit: cover;
+      scroll-snap-align: center;
+      border-radius: 10px;
+      border: 2px solid var(--accent-secondary);
+      transition: transform 0.5s ease;
+    }
+
+    .slider img:hover {
+      transform: scale(1.05);
+    }
   </style>
 </head>
 <body>
   <nav>
     <a href="#home">Home</a>
     <a href="#about">About</a>
-    <a href="#gallery">Gallery</a>
+    <a href="#preview">Preview</a>
+    <a href="#slider">Gallery</a>
     <a href="#contact">Contact</a>
   </nav>
 
@@ -138,8 +161,8 @@
     <p>Yo! I'm s0mu69 — a gamer, editor, and digital creator passionate about high-energy visuals, futuristic designs, and content that hits different.</p>
   </section>
 
-  <section id="gallery">
-    <h2>Image Gallery</h2>
+  <section id="preview">
+    <h2>Preview</h2>
     <div class="gallery">
       <img src="https://via.placeholder.com/300x200" alt="Project 1">
       <img src="https://via.placeholder.com/300x200" alt="Project 2">
@@ -148,6 +171,16 @@
 
     <h2 style="margin-top:2rem">Featured Video</h2>
     <iframe src="https://www.youtube.com/embed/8v4Sg6pIJiI" allowfullscreen></iframe>
+  </section>
+
+  <section id="slider">
+    <h2>Gallery</h2>
+    <div class="slider">
+      <img src="https://via.placeholder.com/300x200?text=Slide+1" alt="Slide 1">
+      <img src="https://via.placeholder.com/300x200?text=Slide+2" alt="Slide 2">
+      <img src="https://via.placeholder.com/300x200?text=Slide+3" alt="Slide 3">
+      <img src="https://via.placeholder.com/300x200?text=Slide+4" alt="Slide 4">
+    </div>
   </section>
 
   <section id="contact">
