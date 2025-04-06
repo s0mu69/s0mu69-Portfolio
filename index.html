@@ -74,7 +74,6 @@
       border: 2px solid var(--accent);
       border-radius: 10px;
       transition: transform 0.3s ease;
-      cursor: pointer;
     }
 
     .gallery img:hover {
@@ -136,46 +135,33 @@
       border-radius: 10px;
       border: 2px solid var(--accent-secondary);
       transition: transform 0.5s ease;
-      cursor: pointer;
     }
 
     .slider img:hover {
       transform: scale(1.05);
     }
 
-    /* Lightbox Styles */
-    #lightbox {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.9);
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      overflow: hidden;
+    /* New style for My Work section */
+    .my-work {
+      display: flex;
+      overflow-x: auto;
+      gap: 20px;
+      padding: 2rem 0;
+      scroll-snap-type: x mandatory;
     }
 
-    #lightbox-img {
-      max-width: 100%;
-      max-height: 100%;
-      border: 3px solid var(--accent);
+    .my-work img {
+      height: 300px;
       border-radius: 12px;
-      box-shadow: 0 0 30px var(--accent);
-      transform: scale(1);
-      transition: transform 0.3s ease;
+      border: 3px solid var(--accent-secondary);
+      scroll-snap-align: center;
+      box-shadow: 0 0 20px var(--accent-secondary);
+      transition: 0.3s;
     }
 
-    #close-lightbox {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      font-size: 2rem;
-      color: var(--accent);
-      cursor: pointer;
-      font-family: sans-serif;
+    .my-work img:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 30px var(--accent-secondary);
     }
   </style>
 </head>
@@ -220,6 +206,16 @@
     </div>
   </section>
 
+  <section>
+    <h2>My Work</h2>
+    <div class="my-work">
+      <img src="https://cdn.discordapp.com/attachments/1121581187593408523/1358453460902871323/ChatGPT_Image_Apr_6_2025_08_08_08_AM.png" alt="Work 1">
+      <img src="https://cdn.discordapp.com/attachments/1121581187593408523/1358453460176994335/ChatGPT_Image_Apr_6_2025_08_03_16_AM.png" alt="Work 2">
+      <img src="https://cdn.discordapp.com/attachments/1121581187593408523/1358453459438932128/ChatGPT_Image_Apr_1_2025_08_21_20_AM.png" alt="Work 3">
+      <img src="https://cdn.discordapp.com/attachments/1121581187593408523/1358453458646073526/ChatGPT_Image_Apr_1_2025_07_02_41_AM.png" alt="Work 4">
+    </div>
+  </section>
+
   <section id="contact">
     <h2>Contact Me</h2>
     <form action="https://formspree.io/f/xyzebkzq" method="POST">
@@ -229,65 +225,5 @@
       <button type="submit">Send Message</button>
     </form>
   </section>
-
-  <!-- Lightbox HTML -->
-  <div id="lightbox">
-    <span id="close-lightbox">&times;</span>
-    <img id="lightbox-img" src="">
-  </div>
-
-  <!-- Lightbox Script -->
-  <script>
-    const lightbox = document.getElementById("lightbox");
-    const lightboxImg = document.getElementById("lightbox-img");
-    const closeBtn = document.getElementById("close-lightbox");
-
-    let scale = 1;
-
-    document.querySelectorAll(".gallery img, .slider img").forEach(img => {
-      img.addEventListener("click", () => {
-        lightboxImg.src = img.src;
-        lightbox.style.display = "flex";
-        scale = 1;
-        lightboxImg.style.transform = `scale(${scale})`;
-      });
-    });
-
-    function closeLightbox() {
-      lightbox.style.display = "none";
-      scale = 1;
-      lightboxImg.style.transform = "scale(1)";
-    }
-
-    closeBtn.addEventListener("click", closeLightbox);
-    lightbox.addEventListener("click", e => {
-      if (e.target === lightbox || e.target === closeBtn) closeLightbox();
-    });
-
-    document.addEventListener("keydown", e => {
-      if (e.key === "Escape") closeLightbox();
-    });
-
-    // Zoom with mouse wheel
-    lightboxImg.addEventListener("wheel", e => {
-      e.preventDefault();
-      scale += e.deltaY * -0.0015;
-      scale = Math.min(Math.max(0.5, scale), 3);
-      lightboxImg.style.transform = `scale(${scale})`;
-    });
-
-    // Swipe to close on mobile
-    let touchStartX = 0;
-    lightboxImg.addEventListener("touchstart", e => {
-      touchStartX = e.touches[0].clientX;
-    });
-
-    lightboxImg.addEventListener("touchend", e => {
-      let touchEndX = e.changedTouches[0].clientX;
-      if (Math.abs(touchEndX - touchStartX) > 80) {
-        closeLightbox();
-      }
-    });
-  </script>
 </body>
 </html>
